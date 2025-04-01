@@ -211,7 +211,7 @@ Tenemos los siguientes objetivos:
     nikto -h http://localhost:81
     ```   
 
-    ![](Images/img209.png)
+    ![](Images/img19.png)
 
 
     ```
