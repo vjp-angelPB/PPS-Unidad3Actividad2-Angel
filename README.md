@@ -111,6 +111,7 @@ Tenemos los siguientes objetivos:
       ```
       nmap --script http-sql-injection -p80 example.com
       ```
+      
       ![](Images/img9.png)
       
     - Escaneo de vulnerabilidades FTP
@@ -118,6 +119,7 @@ Tenemos los siguientes objetivos:
       ```
       nmap --script ftp-vsftpd-backdoor -p21 example.com
       ```
+      
       ![](Images/img10.png)
 
 
@@ -169,10 +171,15 @@ Tenemos los siguientes objetivos:
 
   - Identifica los equipos de la Red con Nmap.
 
-
-
+    ```
+    nmap -sP localhost
+    ```
 
   - Realiza análisis de puertos, servicios y sistemas operativos de las MV.
+
+    ```
+    nmap -sV -p- localhost
+    ```
 
     ![](Images/img15.png)
 
@@ -180,25 +187,123 @@ Tenemos los siguientes objetivos:
   - Inspecciona los puertos con nikto.
 
     ```
-    nikto -h http://192.168.1.101:8081
+    nikto -h http://localhost:8001
     ```
     
     ![](Images/img16.png)
+    
+
+     ```
+    nikto -h http://localhost:8002
+    ```   
+
+    ![](Images/img17.png)
+    
+
+    ```
+    nikto -h http://localhost:8080
+    ```   
+
+    ![](Images/img18.png)
+    
+
+    ```
+    nikto -h http://localhost:81
+    ```   
+
+    ![](Images/img209.png)
+
+
+    ```
+    nikto -h http://localhost:82
+    ```   
+
+    ![](Images/img20.png)
 
 
   - Busca las vulnerabilidades de las MV con los scripts de Nmap.
 
+    ``` 
+    sudo nmap --script=vuln 172.20.0.1
+    ```
+    
+    ![](Images/img21.png)
+
+
+    ``` 
+    sudo nmap --script=http-sql-injection,ssl-heartbleed -p 80,443 172.20.0.1
+    ```
+    
+    ![](Images/img22.png)
+
+
+    ``` 
+    sudo nmap --script=smb-vuln-ms17-010 -p 445 172.20.0.1
+    ```
+    
+    ![](Images/img23.png)
 
 
 
   - Localiza los servicios web que tienen las diferentes máquinas (Wfuzz y Dirb).
 
+    Wfuzz
+
+    ```
+    wfuzz -c -z file,/usr/share/wordlists/dirb/common.txt http://127.0.0.1:8001/FUZZ
+    ```
+
+    ![](Images/img24.png)
 
 
-  - Utiliza el comando searchsploit para buscar información de explotación de vulnerabilidades presentes en linux con      kernel 5
+    ```
+    wfuzz -c -z file,/usr/share/wordlists/dirb/common.txt http://127.0.0.1:8002/FUZZ
+    wfuzz -c -z file,/usr/share/wordlists/dirb/common.txt http://127.0.0.1:8080/FUZZ
+    wfuzz -c -z file,/usr/share/wordlists/dirb/common.txt http://127.0.0.1:443/FUZZ
+    ```
+
+    ![](Images/img25.png)
+ 
+    
+    ![](Images/img26.png)
+ 
+    
+    ![](Images/img27.png)
+
+
+    Dirb
+
+     ```
+     dirb http://127.0.0.1:8001/
+     ```    
+
+    ![](Images/img28.png)
+
+
+     ```
+     dirb http://127.0.0.1:8002/
+     ``` 
+
+    ![](Images/img29.png)
+
+
+    ``` 
+    dirb http://127.0.0.1:8080/
+    dirb http://127.0.0.1:443/
+    ``` 
+
+    ![](Images/img30.png)
+
+
+  - Utiliza el comando searchsploit para buscar información de explotación de vulnerabilidades presentes en linux con     kernel 5
 
 
 
+     ```
+     searchsploit linux kernel 5
+     ``` 
+
+    ![](Images/img31.png)
 
 
 
